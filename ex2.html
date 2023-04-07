@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ex2</title>
+</head>
+
+<body>
+    <!-- second exercise -->
+    <div id="menu">
+        <button id="hamberButton">open menu</button>
+    </div>
+
+
+    <div id="hamberBody">
+
+    </div>
+
+    <script>
+        var hamberButton = document.getElementById("hamberButton")
+        var hamberBody = document.getElementById("hamberBody")
+
+        hamberButton.addEventListener("click", function () {
+            if (hamberBody.style.right == "0px") {
+                hamberBody.style.right = "-240px"
+                hamberButton.innerHTML = "open menu"
+            }
+            else {
+                hamberBody.style.right = "0px"
+                hamberButton.innerHTML = "close menu"
+                hamberButton.style.animation = "fade 1.5s"
+            }
+        })
+    </script>
+</body>
+
+</html>

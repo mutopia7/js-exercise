@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ex4</title>
+</head>
+
+<body>
+    <form id="myForm" autocomplete="on">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{11}" placeholder="11 character"><br><br>
+        <label for="deaprtment">Deaprtment</label>
+        <input list="dep" id="department" name="deaprtment">
+        <datalist id="dep">
+            <option value="one">
+            <option value="two">
+            <option value="three">
+        </datalist><br><br>
+        <label for="message">Message</label>
+        <textarea id="message" name="message"></textarea><br><br>
+        <label for="myFile">Image</label>
+        <input type="file" id="myFile" name="filename" required><br><br>
+        <input type="checkbox" id="check1" name="check1">
+        <label for="check1"> check 1</label>
+        <input type="checkbox" id="check2" name="check2">
+        <label for="check2">check 2</label>
+        <input type="checkbox" id="check3" name="check3">
+        <label for="check3"> check 3</label><br><br>
+        <input type="radio" id="agree" name="agree" value="agree" required>
+        <label for="agree">Agreement</label><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <br><br>
+    <img src="" alt="" id="imgPreview" style="width: 200px !important;display: block; margin: 0 auto;">
+    <br><br>
+    <div id="jsonData" style="width: 200px; margin: 0 auto;"></div>
+
+
+
+    <script>
+        const form = document.getElementById("myForm");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nameInput = document.getElementById("name");
+            const phoneInput = document.getElementById("phone");
+            const depInput = document.getElementById("department");
+            const messageInput = document.getElementById("message");
+            const check1Input = document.getElementById("check1");
+            const check2Input = document.getElementById("check2");
+            const check3Input = document.getElementById("check3");
+
+
+            const fileInput = document.getElementById('myFile');
+            const imgPreview = document.getElementById('imgPreview');
+
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function () {
+                imgPreview.src = reader.result;
+            });
+
+            reader.readAsDataURL(file);
+
+
+
+            const formData = {
+                name: nameInput.value,
+                phone: phoneInput.value,
+                department: depInput.value,
+                message: messageInput.value,
+                check: [check1Input.checked, check2Input.checked, check3Input.checked],
+            };
+
+            const formDataJSON = JSON.stringify(formData);
+
+
+
+            const jsonDataContainer = document.getElementById("jsonData");
+
+            jsonDataContainer.innerHTML = formDataJSON;
+        });
+
+
+    </script>
+
+</body>
+
+</html>
